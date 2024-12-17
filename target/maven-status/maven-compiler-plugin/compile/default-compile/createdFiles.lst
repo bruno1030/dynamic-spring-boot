@@ -1,0 +1,8 @@
+com/dynamic/DynamicSpringBootApplication.class
+com/dynamic/repository/ProductRepository.class
+com/dynamic/mapper/ProductMapper.class
+com/dynamic/controller/ProductController.class
+com/dynamic/security/SecurityConfig.class
+com/dynamic/entity/Product.class
+com/dynamic/dto/ProductDto.class
+com/dynamic/service/ProductService.class
