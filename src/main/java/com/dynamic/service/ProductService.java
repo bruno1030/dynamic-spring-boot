@@ -33,4 +33,7 @@ public class ProductService {
         return productDtoList;
     }
 
+    public void CreateProduct(Product product) {
+        productRepository.save(product);
+    }
 }
