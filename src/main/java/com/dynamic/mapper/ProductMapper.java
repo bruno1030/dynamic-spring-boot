@@ -22,11 +22,13 @@ public class ProductMapper {
     public static Product toProduct(ProductDto productDto){
         Product product = new Product();
 
+        product.setId(productDto.getId());
         product.setBrand(productDto.getBrand());
         product.setTitle(productDto.getTitle());
         product.setDescription(productDto.getDescription());
         product.setStockQuantity(productDto.getStockQuantity());
         product.setValue(productDto.getValue());
+        product.setImageUrl(productDto.getImageUrl());
 
         return product;
     }
