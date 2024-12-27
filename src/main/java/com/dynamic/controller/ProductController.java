@@ -31,7 +31,6 @@ public class ProductController {
         try{
             Product savedProduct = productService.createProduct(ProductMapper.toProduct(newProductDto));
             ProductDto savedProductDtoToResponse = ProductMapper.toDto(savedProduct);
-            System.out.println("Saved imageUrl: " + savedProduct.getImageUrl());
             return new ResponseEntity<>(savedProductDtoToResponse, null, HttpStatus.CREATED);
         }catch (Exception e){
             return new ResponseEntity<>("Error on creating product", null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -46,7 +45,6 @@ public class ProductController {
                 updatedProductDto.setId(id);
                 Product updatedProduct = productService.updateProduct(ProductMapper.toProduct(updatedProductDto));
                 ProductDto updatedProductDtoToResponse = ProductMapper.toDto(updatedProduct);
-                System.out.println("Updated imageUrl: " + updatedProduct.getImageUrl());
                 return new ResponseEntity<>(updatedProductDtoToResponse, null, HttpStatus.OK);
             }
             else{
