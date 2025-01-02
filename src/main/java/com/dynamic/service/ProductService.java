@@ -51,4 +51,18 @@ public class ProductService {
         }
         return null;
     }
+
+    public boolean getProductAvailability(Integer id, Integer quantity) {
+
+        Optional<Product> product = productRepository.findById(id);
+
+        if(product.isPresent()){
+            Product existingProduct = product.get();
+            if(quantity <= existingProduct.getStockQuantity()){
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
