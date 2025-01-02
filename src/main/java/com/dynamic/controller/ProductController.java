@@ -55,4 +55,10 @@ public class ProductController {
         }
     }
 
+    @GetMapping("/{id}/{quantity}")
+    public boolean getProductAvailability(@PathVariable Integer id, @PathVariable Integer quantity){
+        boolean productIsAvailable = productService.getProductAvailability(id, quantity);
+        return productIsAvailable;
+    }
+
 }
