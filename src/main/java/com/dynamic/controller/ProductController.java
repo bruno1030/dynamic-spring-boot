@@ -56,9 +56,13 @@ public class ProductController {
     }
 
     @GetMapping("/{id}/{quantity}")
-    public boolean getProductAvailability(@PathVariable Integer id, @PathVariable Integer quantity){
-        boolean productIsAvailable = productService.getProductAvailability(id, quantity);
-        return productIsAvailable;
+    public ResponseEntity getProductAvailability(@PathVariable Integer id, @PathVariable Integer quantity){
+        try{
+            boolean productIsAvailable = productService.getProductAvailability(id, quantity);
+            return new ResponseEntity<>(productIsAvailable, null, HttpStatus.OK) ;
+        }catch (Exception e){
+            return new ResponseEntity<>("Error on checking the product availability", null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 }
