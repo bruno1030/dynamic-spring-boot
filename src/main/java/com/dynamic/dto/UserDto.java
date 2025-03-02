@@ -3,6 +3,8 @@ package com.dynamic.dto;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
 @Getter
 @Setter
 public class UserDto {
@@ -13,9 +15,9 @@ public class UserDto {
 
     private String lastName;
 
-    private String dateOfBirth;
+    private LocalDate dateOfBirth;
 
-    private int isInternal;
+    private Boolean isInternal;
 
     private Integer roleId;
 

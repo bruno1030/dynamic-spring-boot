@@ -7,6 +7,8 @@ import org.springframework.data.relational.core.mapping.Table;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.MappedCollection;
 
+import java.time.LocalDate;
+
 @Table("users")
 @Getter
 @Setter
@@ -19,13 +21,13 @@ public class User {
 
     private String lastName;
 
-    private String dateOfBirth;
+    private LocalDate dateOfBirth;
 
-    private int isInternal;
+    private Boolean isInternal;
 
     @Column("id_role")  // This maps to the 'id_role' column in the 'users' table
     private Integer roleId;
 
-    @MappedCollection(idColumn = "id_role")  // This fetches the role
+    @MappedCollection(idColumn = "id")  // This fetches the role
     private Role role;
 }

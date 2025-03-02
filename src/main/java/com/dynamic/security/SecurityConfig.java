@@ -18,7 +18,9 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .requestMatchers("/product/**").permitAll()  // Public access to /product
+                .requestMatchers("/product/**").permitAll() // Public access to /product
+                .requestMatchers("/user/**").permitAll()
+                .requestMatchers("/error").permitAll()
                 .anyRequest().authenticated()               // Other endpoints require authentication
                 .and()
                 .httpBasic();  // Basic authentication (you can use JWT or OAuth2 if needed)
