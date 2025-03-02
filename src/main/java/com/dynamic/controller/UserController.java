@@ -2,7 +2,6 @@ package com.dynamic.controller;
 
 import com.dynamic.dto.UserDto;
 import com.dynamic.entity.User;
-import com.dynamic.entity.User;
 import com.dynamic.mapper.UserMapper;
 import com.dynamic.service.UserService;
 import org.springframework.http.HttpStatus;
