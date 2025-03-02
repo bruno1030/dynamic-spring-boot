@@ -1,11 +1,9 @@
 package com.dynamic.dto;
 
-import com.dynamic.entity.Role;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Column;
-import org.springframework.data.relational.core.mapping.MappedCollection;
+
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -17,9 +15,9 @@ public class UserDto {
 
     private String lastName;
 
-    private String dateOfBirth;
+    private LocalDate dateOfBirth;
 
-    private int isInternal;
+    private Boolean isInternal;
 
     private Integer roleId;
 

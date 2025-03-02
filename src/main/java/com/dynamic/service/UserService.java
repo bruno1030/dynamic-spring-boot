@@ -54,7 +54,7 @@ public class UserService {
 
     public User getUserById(Integer userId) {
 
-        Optional<User> user = userRepository.findById(id);
+        Optional<User> user = userRepository.findById(userId);
 
         return user.get();
     }
