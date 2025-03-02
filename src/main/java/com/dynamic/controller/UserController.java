@@ -21,9 +21,13 @@ public class UserController {
     }
 
     @GetMapping
-    public List<UserDto> getUsers(){
-        List<UserDto> userDtoList = userService.getUsers();
-        return userDtoList;
+    public ResponseEntity getUsers(){
+        try{
+            List<UserDto> userDtoList = userService.getUsers();
+            return new ResponseEntity<>(userDtoList, null, HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>("Error on getting the list of users", null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PostMapping
@@ -56,7 +60,7 @@ public class UserController {
     }
 
     @GetMapping("/{userId}")
-    public ResponseEntity getUserById(@PathVariable Integer userId){
+    public ResponseEntity getUserById(@PathVariable("userId") Integer userId){
         try{
             User retrievedUser = userService.getUserById(userId);
             UserDto retrievedUserDto = UserMapper.toDto(retrievedUser);

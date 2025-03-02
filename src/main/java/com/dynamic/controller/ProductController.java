@@ -1,6 +1,7 @@
 package com.dynamic.controller;
 
 import com.dynamic.dto.ProductDto;
+import com.dynamic.dto.UserDto;
 import com.dynamic.entity.Product;
 import com.dynamic.mapper.ProductMapper;
 import com.dynamic.service.ProductService;
@@ -21,9 +22,13 @@ public class ProductController {
     }
 
     @GetMapping
-    public List<ProductDto> getProducts(){
-        List<ProductDto> productDtoList = productService.getProducts();
-        return productDtoList;
+    public ResponseEntity getProducts(){
+        try{
+            List<ProductDto> productDtoList = productService.getProducts();
+            return new ResponseEntity<>(productDtoList, null, HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>("Error on getting the list of products", null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PostMapping
@@ -56,7 +61,7 @@ public class ProductController {
     }
 
     @GetMapping("/{id}/{quantity}")
-    public ResponseEntity getProductAvailability(@PathVariable Integer id, @PathVariable Integer quantity){
+    public ResponseEntity getProductAvailability(@PathVariable("id") Integer id, @PathVariable("quantity") Integer quantity){
         try{
             boolean productIsAvailable = productService.getProductAvailability(id, quantity);
             return new ResponseEntity<>(productIsAvailable, null, HttpStatus.OK) ;
