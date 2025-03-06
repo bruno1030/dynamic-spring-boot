@@ -30,4 +30,8 @@ public class User {
 
     @MappedCollection(idColumn = "id")  // This fetches the role
     private Role role;
+
+    private String username;
+
+    private String password;
 }

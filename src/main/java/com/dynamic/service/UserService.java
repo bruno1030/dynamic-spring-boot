@@ -35,6 +35,9 @@ public class UserService {
     }
 
     public User createUser(User user) {
+        if (!user.getPassword().isEmpty()){
+
+        }
         User savedUser = userRepository.save(user);
         return savedUser;
     }
