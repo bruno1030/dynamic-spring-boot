@@ -1,6 +1,7 @@
 package com.dynamic.controller;
 
 import com.dynamic.dto.UserDto;
+import com.dynamic.dto.UserRegistrationDto;
 import com.dynamic.entity.User;
 import com.dynamic.mapper.UserMapper;
 import com.dynamic.service.UserService;
@@ -31,9 +32,9 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity saveUser(@RequestBody UserDto newUserDto){
+    public ResponseEntity saveUser(@RequestBody UserRegistrationDto newUserRegistrationDto){
         try{
-            User savedUser = userService.createUser(UserMapper.toUser(newUserDto));
+            User savedUser = userService.createUser(UserMapper.toUser(newUserRegistrationDto));
             UserDto savedUserDtoToResponse = UserMapper.toDto(savedUser);
             return new ResponseEntity<>(savedUserDtoToResponse, null, HttpStatus.CREATED);
         }catch (Exception e){
@@ -42,12 +43,12 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity updateUser(@PathVariable Integer id, @RequestBody UserDto updatedUserDto){
+    public ResponseEntity updateUser(@PathVariable Integer id, @RequestBody UserRegistrationDto updatedUserRegistrationDto){
         try{
             User existingUser = userService.findUserById(id);
             if(existingUser != null){
-                updatedUserDto.setId(id);
-                User updatedUser = userService.updateUser(UserMapper.toUser(updatedUserDto));
+                updatedUserRegistrationDto.setId(id);
+                User updatedUser = userService.updateUser(UserMapper.toUser(updatedUserRegistrationDto));
                 UserDto updatedUserDtoToResponse = UserMapper.toDto(updatedUser);
                 return new ResponseEntity<>(updatedUserDtoToResponse, null, HttpStatus.OK);
             }
