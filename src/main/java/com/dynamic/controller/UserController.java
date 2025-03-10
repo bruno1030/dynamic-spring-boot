@@ -34,7 +34,7 @@ public class UserController {
     @PostMapping
     public ResponseEntity saveUser(@RequestBody UserRegistrationDto newUserRegistrationDto){
         try{
-            User savedUser = userService.createUser(UserMapper.toUser(newUserRegistrationDto));
+            User savedUser = userService.createUser(newUserRegistrationDto);
             UserDto savedUserDtoToResponse = UserMapper.toDto(savedUser);
             return new ResponseEntity<>(savedUserDtoToResponse, null, HttpStatus.CREATED);
         }catch (Exception e){

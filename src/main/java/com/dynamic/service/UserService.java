@@ -1,9 +1,11 @@
 package com.dynamic.service;
 
 import com.dynamic.dto.UserDto;
+import com.dynamic.dto.UserRegistrationDto;
 import com.dynamic.entity.User;
 import com.dynamic.mapper.UserMapper;
 import com.dynamic.repository.UserRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,9 +16,11 @@ import java.util.Optional;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public List<UserDto> getUsers(){
@@ -34,12 +38,13 @@ public class UserService {
         return userDtoList;
     }
 
-    public User createUser(User user) {
-        if (!user.getPassword().isEmpty()){
+    public User createUser(UserRegistrationDto newUserRegistrationDto) {
 
-        }
-        User savedUser = userRepository.save(user);
-        return savedUser;
+        User userToBeSaved = UserMapper.toUser(newUserRegistrationDto);
+
+        userToBeSaved.setPassword(passwordEncoder.encode(userToBeSaved.getPassword()));
+
+        return userRepository.save(userToBeSaved);
     }
 
     public User updateUser(User user) {
