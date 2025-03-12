@@ -3,6 +3,7 @@ package com.dynamic.service;
 import com.dynamic.dto.UserDto;
 import com.dynamic.dto.UserRegistrationDto;
 import com.dynamic.entity.User;
+import com.dynamic.exception.UserNotFoundException;
 import com.dynamic.mapper.UserMapper;
 import com.dynamic.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -61,9 +62,7 @@ public class UserService {
     }
 
     public User getUserById(Integer userId) {
-
-        Optional<User> user = userRepository.findById(userId);
-
-        return user.get();
+        return userRepository.findById(userId)
+                .orElseThrow(() -> new UserNotFoundException("User with ID " + userId + " not found"));
     }
 }

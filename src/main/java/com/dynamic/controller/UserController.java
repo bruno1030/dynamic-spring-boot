@@ -61,14 +61,10 @@ public class UserController {
     }
 
     @GetMapping("/{userId}")
-    public ResponseEntity getUserById(@PathVariable("userId") Integer userId){
-        try{
-            User retrievedUser = userService.getUserById(userId);
-            UserDto retrievedUserDto = UserMapper.toDto(retrievedUser);
-            return new ResponseEntity<>(retrievedUser, null, HttpStatus.OK) ;
-        }catch (Exception e){
-            return new ResponseEntity<>("Error on getting the user by id", null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    public ResponseEntity<UserDto> getUserById(@PathVariable("userId") Integer userId) {
+        User retrievedUser = userService.getUserById(userId);
+        UserDto retrievedUserDto = UserMapper.toDto(retrievedUser);
+        return ResponseEntity.ok(retrievedUserDto);
     }
 
 }
