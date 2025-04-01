@@ -30,7 +30,6 @@ public class UserMapper {
         user.setIsInternal(userRegistrationDto.getIsInternal());
         user.setRoleId(userRegistrationDto.getRoleId());
         user.setUsername(userRegistrationDto.getUsername());
-        user.setPassword(userRegistrationDto.getPassword());
 
         return user;
     }
