@@ -21,6 +21,7 @@ public class SecurityConfig {
                 .requestMatchers("/product/**").permitAll() // Public access to /product
                 .requestMatchers("/user/**").permitAll()
                 .requestMatchers("/role/**").permitAll()
+                .requestMatchers("/auth/**").permitAll()
                 .requestMatchers("/error").permitAll()
                 .anyRequest().authenticated()               // Other endpoints require authentication
                 .and()

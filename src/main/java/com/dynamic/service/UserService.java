@@ -65,4 +65,11 @@ public class UserService {
         return userRepository.findById(userId)
                 .orElseThrow(() -> new UserNotFoundException("User with ID " + userId + " not found"));
     }
+
+    public boolean authenticate(String username, String rawPassword) {
+        User user = userRepository.findByUsername(username);
+        if (user == null)
+            return false;
+        return passwordEncoder.matches(rawPassword, user.getPassword());
+    }
 }
