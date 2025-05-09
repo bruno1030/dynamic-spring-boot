@@ -60,9 +60,16 @@ public class UserController {
         }
     }
 
-    @GetMapping("/{userId}")
+    @GetMapping("/by-id/{userId}")
     public ResponseEntity<UserDto> getUserById(@PathVariable("userId") Integer userId) {
         User retrievedUser = userService.getUserById(userId);
+        UserDto retrievedUserDto = UserMapper.toDto(retrievedUser);
+        return ResponseEntity.ok(retrievedUserDto);
+    }
+
+    @GetMapping("/by-username/{username}")
+    public ResponseEntity<UserDto> getUserByUsername(@PathVariable("username") String username) {
+        User retrievedUser = userService.getUserByUsername(username);
         UserDto retrievedUserDto = UserMapper.toDto(retrievedUser);
         return ResponseEntity.ok(retrievedUserDto);
     }

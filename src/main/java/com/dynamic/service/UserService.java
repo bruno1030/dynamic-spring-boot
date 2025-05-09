@@ -66,6 +66,15 @@ public class UserService {
                 .orElseThrow(() -> new UserNotFoundException("User with ID " + userId + " not found"));
     }
 
+    public User getUserByUsername(String username) {
+        User user = userRepository.findByUsername(username);
+        if (user == null){
+            return null;
+        }
+
+        return user;
+    }
+
     public boolean authenticate(String username, String rawPassword) {
         User user = userRepository.findByUsername(username);
         if (user == null)
