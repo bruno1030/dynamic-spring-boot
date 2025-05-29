@@ -27,7 +27,7 @@ public class UserController {
             List<UserDto> userDtoList = userService.getUsers();
             return new ResponseEntity<>(userDtoList, null, HttpStatus.OK);
         }catch (Exception e){
-            return new ResponseEntity<>("Error on getting the list of users", null, HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>("Error on retrieving the list of users", null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
